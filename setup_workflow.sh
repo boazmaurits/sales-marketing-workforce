@@ -25,9 +25,9 @@ ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 RUN apt-get update && apt-get install -y curl git && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
-COPY apps/worker/pyproject.toml .
+COPY pyproject.toml .
 RUN pip install --no-cache-dir -e .
-COPY apps/worker/src/ ./src/
+COPY src/ ./src/
 RUN useradd -m -u 1000 appuser && chown -R appuser:appuser /app
 USER appuser
 CMD ["python", "-m", "worker.entrypoints.worker"]
