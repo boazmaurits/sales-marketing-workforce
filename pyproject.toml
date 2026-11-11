@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sales-marketing-workforce"
+version = "1.0.0"
+description = "Multi-agent system for sales and marketing lead generation with human approval gates"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "Sales & Marketing Team", email = "team@company.com"}
+]
+
+dependencies = [
+    "mistralai>=1.0.0",
+    "pydantic>=2.5.0",
+    "pyyaml>=6.0.1",
+    "aiohttp>=3.8.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.1.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+]
+
+[project.scripts]
+sales-workforce = "main:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["sales_marketing_workforce*"]
+
+[tool.black]
+line-length = 100
+target-version = ["py310", "py311", "py312"]
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "I", "N", "W", "UP"]
+ignore = ["E501"]

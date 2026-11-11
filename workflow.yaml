@@ -1,0 +1,229 @@
+# Sales & Marketing Workforce Configuration
+# Define your ICP (Ideal Customer Profile) and workflow settings
+
+# Company Information
+company:
+  name: "Your Company Name"
+  website: "https://yourcompany.com"
+  industry: "Your Industry"
+  size: "10-50 employees"  # or "50-200", "200-500", "500+"
+  location: "Global"  # or specific regions
+
+# Ideal Customer Profile (ICP)
+icp:
+  # Target industries
+  industries:
+    - "Technology"
+    - "Finance"
+    - "Healthcare"
+    - "E-commerce"
+    - "Manufacturing"
+
+  # Company sizes to target
+  company_sizes:
+    - "50-200"
+    - "200-500"
+    - "500-1000"
+
+  # Geographic regions
+  regions:
+    - "North America"
+    - "Europe"
+    - "Asia-Pacific"
+
+  # Job titles to target
+  job_titles:
+    - "CEO"
+    - "CTO"
+    - "CFO"
+    - "VP of Sales"
+    - "VP of Marketing"
+    - "Director of Sales"
+    - "Director of Marketing"
+    - "Head of Growth"
+    - "Sales Manager"
+    - "Marketing Manager"
+
+  # Technologies they use (for tech companies)
+  technologies:
+    - "AWS"
+    - "Azure"
+    - "Google Cloud"
+    - "Salesforce"
+    - "HubSpot"
+    - "Shopify"
+    - "Magento"
+
+  # Revenue range (in USD)
+  revenue_range: "1M-50M"
+
+  # Funding stage (for startups)
+  funding_stage: null  # or "Seed", "Series A", "Series B", etc.
+
+# Market Signal Configuration
+market_signals:
+  # Keywords to monitor in news, social media, job postings
+  keywords:
+    - "hiring sales"
+    - "expanding team"
+    - "new funding"
+    - "acquisition"
+    - "partnership"
+    - "new product launch"
+    - "digital transformation"
+    - "cloud migration"
+
+  # Data sources to monitor
+  sources:
+    - "LinkedIn"
+    - "Crunchbase"
+    - "AngelList"
+    - "TechCrunch"
+    - "Company websites"
+    - "Job boards"
+
+  # Signal freshness (in days)
+  max_age_days: 7
+
+# Human Approval Configuration
+human_approval:
+  # Enable/disable human approval gates
+  enabled: true
+
+  # Approval required before these actions
+  required_for:
+    - "send_email"
+    - "send_linkedin_message"
+    - "publish_content"
+    - "schedule_meeting"
+
+  # Approval timeout (in hours)
+  timeout_hours: 24
+
+  # Notification method for approvals
+  notification:
+    method: "email"  # or "slack", "teams", "both"
+    email: "approvals@yourcompany.com"
+
+# Agent Configuration
+agents:
+  market_signal_analyzer:
+    enabled: true
+    check_interval: "1 hour"
+    max_signals_per_run: 50
+
+  lead_researcher:
+    enabled: true
+    max_leads_per_run: 20
+    data_sources:
+      - "LinkedIn"
+      - "Crunchbase"
+      - "Company websites"
+
+  content_creator:
+    enabled: true
+    tone: "professional"  # or "friendly", "casual", "technical"
+    length: "medium"  # or "short", "long"
+
+  personalization_engine:
+    enabled: true
+    use_ai: true
+    customization_level: "high"  # or "low", "medium"
+
+  compliance_checker:
+    enabled: true
+    check_gdpr: true
+    check_can_spam: true
+    check_opt_out: true
+
+  email_sender:
+    enabled: true
+    smtp_host: "smtp.yourcompany.com"
+    smtp_port: 587
+    use_tls: true
+
+  linkedin_engager:
+    enabled: true
+    connection_request_limit: 100
+    message_limit: 50
+
+  follow_up_scheduler:
+    enabled: true
+    max_follow_ups: 3
+    follow_up_interval: "3 days"
+
+# Email Configuration
+email:
+  from_address: "sales@yourcompany.com"
+  from_name: "Your Company Sales Team"
+  reply_to: "replies@yourcompany.com"
+  signature: |
+    Best regards,
+    The Sales Team
+    Your Company
+    https://yourcompany.com
+
+# LinkedIn Configuration
+linkedin:
+  profile_url: "https://linkedin.com/company/yourcompany"
+  connection_message_template: |
+    Hi {first_name},
+
+    I noticed {company} is {signal}. We help companies like yours {value_proposition}.
+
+    Would you be open to a quick chat?
+
+    Best,
+    {your_name}
+
+# Content Templates
+templates:
+  email:
+    subject: "Helping {company} with {pain_point}"
+    body: |
+      Hi {first_name},
+
+      I came across {company} and noticed you're {signal}. At {your_company}, we specialize in helping companies like yours {value_proposition}.
+
+      {personalized_message}
+
+      Would you be available for a 15-minute call next week?
+
+      Best regards,
+      {your_name}
+      {your_title}
+      {your_company}
+      {your_phone}
+      {your_email}
+
+  linkedin:
+    message: |
+      Hi {first_name},
+
+      I saw that {company} is {signal}. We've helped similar companies {achievement}.
+
+      Would you be open to connecting?
+
+      Best,
+      {your_name}
+
+# Rate Limiting
+rate_limits:
+  max_emails_per_day: 50
+  max_linkedin_messages_per_day: 30
+  max_connection_requests_per_day: 20
+  cool_down_period: "1 hour"
+
+# Logging Configuration
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  file: "workforce.log"
+  max_size_mb: 10
+  backup_count: 5
+
+# Error Handling
+error_handling:
+  retry_attempts: 3
+  retry_delay: "5 minutes"
+  notify_on_error: true
+  notification_email: "errors@yourcompany.com"
