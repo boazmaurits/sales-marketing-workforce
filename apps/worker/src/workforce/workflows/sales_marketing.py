@@ -554,13 +554,8 @@ class SalesMarketingWorkflow:
     async def run(self, input: SalesMarketingInput) -> SalesMarketingResult:
         logger.info("🚀 Starting Sales & Marketing Workforce...")
         
-        # Load configuration
-	# config_path = Path("workflow.yaml")
-        # workflow_config = {}
-        # if config_path.exists():
-        # with open(config_path, "r") as f:
-        # workflow_config = yaml.safe_load(f) or {}
-        
+         workflow_config = {}
+                
         # Extract configuration
         sources = [SignalSource(s) for s in workflow_config.get("market_signals", {}).get("sources", [])]
         keywords = workflow_config.get("market_signals", {}).get("keywords", [])
