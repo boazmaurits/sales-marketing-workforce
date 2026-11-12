@@ -554,18 +554,17 @@ class SalesMarketingWorkflow:
     async def run(self, input: SalesMarketingInput) -> SalesMarketingResult:
         logger.info("🚀 Starting Sales & Marketing Workforce...")
         
-         workflow_config = {}
-                
+
         # Extract configuration
-        sources = [SignalSource(s) for s in workflow_config.get("market_signals", {}).get("sources", [])]
-        keywords = workflow_config.get("market_signals", {}).get("keywords", [])
-        target_industries = workflow_config.get("icp", {}).get("industries", [])
-        target_sizes = [CompanySize(s) for s in workflow_config.get("icp", {}).get("company_sizes", [])]
-        target_regions = workflow_config.get("icp", {}).get("regions", [])
-        tone = workflow_config.get("agents", {}).get("content_creator", {}).get("tone", "professional")
-        length = workflow_config.get("agents", {}).get("content_creator", {}).get("length", "medium")
-        customization_level = workflow_config.get("agents", {}).get("personalization_engine", {}).get("customization_level", "high")
-        required_for = workflow_config.get("human_approval", {}).get("required_for", [])
+        sources = [SignalSource.LINKEDIN, SignalSource.CRUNCHBASE, SignalSource.ANGELLIST]
+        keywords = ["hiring", "expanding", "funding", "growth", "AI", "machine learning"]
+        target_industries = input.industries if input.industries else ["Technology", "SaaS", "AI"]
+        target_sizes = input.company_sizes if input.company_sizes else [CompanySize.SIZE_10_50, CompanySize.SIZE_50_200]
+        target_regions = input.regions if input.regions else ["North America", "Europe"]
+        tone = "professional"
+        length = "medium"
+        customization_level = "high"
+        required_for = []
         
         # AGENT 1: Market Signal Analyzer
         logger.info("\n" + "="*60)
@@ -637,8 +636,8 @@ class SalesMarketingWorkflow:
         emails_sent = await send_emails(
             contents=contents,
             dry_run=input.dry_run,
-            from_address=workflow_config.get("email", {}).get("from_address", "sales@example.com"),
-            from_name=workflow_config.get("email", {}).get("from_name", "Sales Team")
+            from_address="sales@example.com",
+            from_name="Sales Team"
         )
         
         # AGENT 7: LinkedIn Engager
@@ -656,8 +655,8 @@ class SalesMarketingWorkflow:
         logger.info("="*60)
         follow_ups = await schedule_follow_ups(
             leads=leads,
-            max_follow_ups=workflow_config.get("agents", {}).get("follow_up_scheduler", {}).get("max_follow_ups", 3),
-            follow_up_interval=workflow_config.get("agents", {}).get("follow_up_scheduler", {}).get("follow_up_interval", "3 days")
+            max_follow_ups=3,
+            follow_up_interval="3 days"
         )
         
         # Compile results
