@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sales-marketing-workforce"
+version = "1.0.0"
+description = "Sales & Marketing Workforce - Multi-agent system for lead generation"
+requires-python = ">=3.11"
+dependencies = [
+    "mistralai>=1.0.0",
+    "mistralai-workflows>=1.0.0",
+    "pydantic>=2.5.0",
+    "pyyaml>=6.0.1",
+    "aiohttp>=3.8.0",
+    "python-dotenv>=1.0.0"
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["workforce*"]

@@ -1,0 +1,24 @@
+# Sales & Marketing Workforce Dockerfile
+FROM python:3.12-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+RUN apt-get update && apt-get install -y curl git && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Copy workforce configuration
+COPY pyproject_workforce.toml .
+COPY src/ ./src/
+COPY workflow.yaml .
+
+# Install dependencies
+RUN pip install --no-cache-dir -e .
+
+# Create non-root user
+RUN useradd -m -u 1000 appuser && chown -R appuser:appuser /app
+USER appuser
+
+# Run the workforce worker
+CMD ["python", "-m", "workforce.entrypoints.worker"]

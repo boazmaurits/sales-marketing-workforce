@@ -38,5 +38,5 @@ EXPOSE 8000
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
     CMD python -c "import mistralai; print('OK')" || exit 1
 
-# Default command
-CMD ["python", "main.py"]
+# Default command - run the workforce worker
+CMD ["python", "-m", "workforce.entrypoints.worker"]
