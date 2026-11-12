@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "sales-marketing-workforce"
 version = "1.0.0"
-description = "Sales & Marketing Workforce - Multi-agent system for lead generation"
+description = "Sales & Marketing Workforce with 8 agents"
 requires-python = ">=3.11"
 dependencies = [
     "mistralai>=1.0.0",
@@ -17,5 +17,5 @@ dependencies = [
 ]
 
 [tool.setuptools.packages.find]
-where = ["src"]
+where = ["."]
 include = ["workforce*"]
