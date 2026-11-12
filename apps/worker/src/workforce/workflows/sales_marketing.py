@@ -555,11 +555,11 @@ class SalesMarketingWorkflow:
         logger.info("🚀 Starting Sales & Marketing Workforce...")
         
         # Load configuration
-        config_path = Path("workflow.yaml")
-        workflow_config = {}
-        if config_path.exists():
-            with open(config_path, "r") as f:
-                workflow_config = yaml.safe_load(f) or {}
+	# config_path = Path("workflow.yaml")
+        # workflow_config = {}
+        # if config_path.exists():
+        # with open(config_path, "r") as f:
+        # workflow_config = yaml.safe_load(f) or {}
         
         # Extract configuration
         sources = [SignalSource(s) for s in workflow_config.get("market_signals", {}).get("sources", [])]
